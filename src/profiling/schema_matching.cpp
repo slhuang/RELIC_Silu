@@ -1,10 +1,15 @@
 #include "../../include/profiling/schema_matching.h"
 
 bool is_number(const string& s) {
+    if (s == "NaN") return true;
+    int dot_cnt = 0;
     for (const auto& c : s) {
-        if (isdigit(c) == false)   return false;
+        if (c == '.') {
+            ++dot_cnt;
+            if (dot_cnt > 1) return false;
+        }else if (isdigit(c) == false)   return false;
     }
-    return s.empty() || s.size() == 1 || s[0] != '0';
+    return s.empty() || s.size() == 1 || dot_cnt == 1 || s[0] != '0'; //0, 0.0, 001
 }
 
 bool is_null_string(const string &s)
@@ -20,6 +25,7 @@ string infer_data_type(const string& val, string& curDataType) {
     if(is_null_string(val) && curDataType == "null") return "null";
     bool isNumber = is_number(val);
     if ((curDataType == "number" || curDataType == "null") && isNumber) return "number";
+    exit(1);
     return "string";
 }
 
@@ -49,7 +55,7 @@ void schema_matching::load_header_and_sample_value(int sampleCnt){
     for (int fid = 0; fid < filePaths.size(); ++fid) {
         ifstream fin(filePaths[fid]);
         string line;
-        cout << "----------------" << filePaths[fid] << "---------------\n";
+        //cout << "----------------" << filePaths[fid] << "---------------\n";
         for (int lineId = 0; getline(fin, line), lineId < sampleCnt; ++lineId) {
             istringstream ss(line);
             int cid = 0, null_id = 0;  // column id
@@ -114,6 +120,7 @@ void schema_matching::schema_match_by_name_and_type(){
             col_l2g[fid][cid] = global_cid;
         }
     }
+    cout << "----------------finish schema matching by name and type -------------------\n"; 
 }
 
 /*

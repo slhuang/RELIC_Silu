@@ -43,7 +43,7 @@ void pre_clustering::cluster_with_exact_schema() {
         for (const auto& cid : file) {
             unique_name += to_string(cid) + " ";
         }
-        //cout << unique_name << " " << fid << endl;
+        cout << unique_name << " " << fid << endl;
         cluster2files[unique_name].push_back(fid);
     }
     // populate $cluster

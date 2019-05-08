@@ -2,7 +2,7 @@
 
 /* compile
 g++ -o src/preserving_ops/preserving_ops src/preserving_ops/preserving_ops_test.cpp \
-src/pre_clustering/pre_clustering.cpp src/preserving_ops/mincut.cpp \
+src/pre_clustering/pre_clustering.cpp src/preserving_ops/mincut.cpp src/preserving_ops/kruskal.cpp \
 src/profiling/schema_matching.cpp src/preserving_ops/preserving_ops.cpp -std=c++14 -O3
 */
 
@@ -38,4 +38,7 @@ int main(int argc, char *argv[])
     ops.column_level_jaccard();
     ops.relational_sim();
     ops.print_sim_scores();
+    ops.lineage_construction_mst("cell");
+    ops.lineage_construction_mst("col");
+    ops.lineage_construction_mst("rel");
 }

@@ -1,0 +1,1320 @@
+['0.csv', '1.csv', '10.csv', '11.csv', '12.csv', '13.csv', '14.csv', '15.csv', '16.csv', '17.csv', '18.csv', '19.csv', '2.csv', '3.csv', '4.csv', '5.csv', '6.csv', '7.csv', '8.csv', '9.csv']
+----------profiling ----------
+Got stdout: b'/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/0.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/1.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/10.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/11.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/12.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/13.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/14.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/15.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/16.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/17.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/18.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/19.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/2.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/3.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/4.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/5.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/6.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/7.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/8.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/9.csv,
+--------- total number of files: 20 ---------
+----------------finish schema matching by name and type -------------------
+----------------load files---------------
+In total 20 files 
+--------------finish identifying pks--------------
+---------------finish row matching-----------------
+'
+---------pre_clustering----------
+Got stdout: b'---------load global_cids from file ----------- 
+20 files in total. 
+0 1 2 3 4 5 6 7 8 9 10  0
+0 1 2 3 4 5 6 7 8 9 10 11  1
+0 1 2 3 4 5 6 7 8 9 10 11  2
+0 1 2 3 4 5 6 7 8 9 10 11  3
+0 1 2 3 4 5 6 7 8 9 10 11  4
+0 1 2 3 4 5 6 7 8 9 10 11  5
+0 1 2 3 4 5 6 7 8 9 10 11  6
+0 1 2 3 4 5 6 7 8 9 10 11  7
+0 1 2 3 4 5 6 7 8 9 10 11  8
+0 1 2 3 4 5 6 7 8 9 10 11  9
+0 1 2 4 5 6 7 8 9 10 11  10
+0 1 2 4 5 6 7 8 9 10 11  11
+0 1 2 3 4 5 6 7 8 9 10 11  12
+0 1 2 3 4 5 6 7 8 9 10 11  13
+0 1 2 3 4 5 6 7 8 9 10 11  14
+0 1 2 3 4 5 6 7 8 9 10 11  15
+0 1 2 3 5 6 7 8 9 10 11  16
+0 1 2 3 4 5 6 7 8 9 10 11  17
+0 1 2 3 4 5 6 7 8 9 10 11  18
+0 1 2 3 4 5 6 7 8 9 10 11  19
+--------- cluster with the exact schema ---------
+4 clusters
+'
+['0.csv', '1.csv', '10.csv', '11.csv', '12.csv', '13.csv', '14.csv', '15.csv', '16.csv', '17.csv', '18.csv', '19.csv', '2.csv', '3.csv', '4.csv', '5.csv', '6.csv', '7.csv', '8.csv', '9.csv']
+----------preserving-ops----------
+Got stdout: b'/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/0.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/1.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/10.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/11.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/12.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/13.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/14.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/15.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/16.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/17.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/18.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/19.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/2.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/3.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/4.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/5.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/6.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/7.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/8.csv,/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/9.csv,--------- total number of files: 20 ---------
+---------load row_l2g row_l2g from file ----------- 
+20 files in total. 
+---------load col_g2l col_l2g from file ----------- 
+20 files in total. 
+----------------load files---------------
+In total 20 files 
+---------------load cluster from file---------------
+In total 4 clusters
+10000 rows; 12 columns.
+Finish naiveCompareCell 110000 common cells. 230000 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 891 common cells. 110972 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 120972 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 891 common cells. 110972 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 120972 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 1944 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 638 common cells. 110696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 120696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 638 common cells. 110696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 120696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1392 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 638 common cells. 110696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 120696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1392 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1392 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 638 common cells. 110696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 120696 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1392 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1392 total cells.
+58 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1392 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 891 common cells. 110972 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 120972 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 1944 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 1944 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+81 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 1668 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 110936 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 120936 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1908 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1908 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1632 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1632 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1632 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1632 total cells.
+78 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 1908 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 110858 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 120858 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1830 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1830 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1830 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 858 common cells. 1794 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 110858 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 120858 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1830 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1830 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1554 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 1830 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 858 common cells. 1794 total cells.
+78 rows; 11 columns.
+Finish naiveCompareCell 858 common cells. 1716 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 8415 common cells. 119180 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 9180 common cells. 129180 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 10152 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 10152 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 10152 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 10116 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 10038 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 10038 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 3740 common cells. 114080 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 4080 common cells. 124080 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 456 common cells. 5052 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 456 common cells. 5052 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 360 common cells. 4776 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 360 common cells. 4776 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 360 common cells. 4776 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 360 common cells. 4776 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 456 common cells. 5052 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5016 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 4938 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 4938 total cells.
+340 rows; 12 columns.
+Finish naiveCompareCell 4080 common cells. 13260 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 8415 common cells. 119180 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 9180 common cells. 129180 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 10152 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 10152 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 9876 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 10152 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 10116 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 10038 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 10038 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 9180 common cells. 18360 total cells.
+765 rows; 12 columns.
+Finish naiveCompareCell 4080 common cells. 13260 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 2794 common cells. 113048 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 3048 common cells. 123048 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 228 common cells. 4020 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 228 common cells. 4020 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 168 common cells. 3744 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 168 common cells. 3744 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 168 common cells. 3744 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 168 common cells. 3744 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 228 common cells. 4020 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 3984 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 3906 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 3906 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 3048 common cells. 12228 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 1380 common cells. 7128 total cells.
+254 rows; 12 columns.
+Finish naiveCompareCell 3048 common cells. 12228 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 2540 common cells. 112794 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 2794 common cells. 122794 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 209 common cells. 3766 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 209 common cells. 3766 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 154 common cells. 3490 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 154 common cells. 3490 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 154 common cells. 3490 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 154 common cells. 3490 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 209 common cells. 3766 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 3730 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 3652 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 0 common cells. 3652 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 2794 common cells. 11974 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 1265 common cells. 6874 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 2794 common cells. 11974 total cells.
+254 rows; 11 columns.
+Finish naiveCompareCell 2794 common cells. 5842 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4125 common cells. 114500 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 124500 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 5472 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 5472 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 5472 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5436 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5358 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5358 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 13680 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 2004 common cells. 8580 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 13680 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 1440 common cells. 7548 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 1320 common cells. 7294 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4125 common cells. 114500 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 124500 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 5472 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 5472 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 5196 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 5472 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5436 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5358 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 5358 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 13680 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 2004 common cells. 8580 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 13680 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 1440 common cells. 7548 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 1320 common cells. 7294 total cells.
+375 rows; 12 columns.
+Finish naiveCompareCell 4500 common cells. 9000 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 1199 common cells. 111308 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 1308 common cells. 121308 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 2280 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 2280 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 2004 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 2004 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 2004 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 696 common cells. 2004 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 972 common cells. 2280 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 2244 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 2166 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 0 common cells. 2166 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 1308 common cells. 10488 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 636 common cells. 5388 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 1308 common cells. 10488 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 312 common cells. 4356 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 286 common cells. 4102 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 1308 common cells. 5808 total cells.
+109 rows; 12 columns.
+Finish naiveCompareCell 1308 common cells. 5808 total cells.
+------------finish calculating cell level jaccard similarity-----------
+-----------finish aggregating each column set--------------
+------------finish calculating column level jaccard similarity------------
+Finish constructNetwork (number of nodes in U1: 10000; U2:11; total: 10013). with 0 total bipartite edges. 
+wU1:1; wU2:909. Taking 4 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 10001. Taking 2.285 ms. -----------
+The maximum node biclique: ( 10000, 11 )
+Finish constructNetwork (number of nodes in U1: 81; U2:11; total: 94). with 0 total bipartite edges. 
+wU1:1; wU2:7. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 11 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:11; total: 94). with 0 total bipartite edges. 
+wU1:1; wU2:7. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 11 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:11; total: 71). with 0 total bipartite edges. 
+wU1:1; wU2:5. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 11 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:11; total: 71). with 0 total bipartite edges. 
+wU1:1; wU2:5. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 11 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.023 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:11; total: 71). with 0 total bipartite edges. 
+wU1:1; wU2:5. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 11 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:11; total: 71). with 0 total bipartite edges. 
+wU1:1; wU2:5. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 11 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:11; total: 94). with 0 total bipartite edges. 
+wU1:1; wU2:7. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 11 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 78; U2:11; total: 91). with 0 total bipartite edges. 
+wU1:1; wU2:7. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 79. Taking 0.017 ms. -----------
+The maximum node biclique: ( 78, 11 )
+Finish constructNetwork (number of nodes in U1: 78; U2:11; total: 91). with 0 total bipartite edges. 
+wU1:1; wU2:7. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 79. Taking 0.017 ms. -----------
+The maximum node biclique: ( 78, 11 )
+Finish constructNetwork (number of nodes in U1: 78; U2:11; total: 91). with 0 total bipartite edges. 
+wU1:1; wU2:7. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 79. Taking 0.018 ms. -----------
+The maximum node biclique: ( 78, 11 )
+Finish constructNetwork (number of nodes in U1: 765; U2:11; total: 778). with 0 total bipartite edges. 
+wU1:1; wU2:69. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 766. Taking 0.165 ms. -----------
+The maximum node biclique: ( 765, 11 )
+Finish constructNetwork (number of nodes in U1: 765; U2:12; total: 779). with 0 total bipartite edges. 
+wU1:1; wU2:63. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 766. Taking 0.185 ms. -----------
+The maximum node biclique: ( 765, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 340; U2:11; total: 353). with 0 total bipartite edges. 
+wU1:1; wU2:30. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 341. Taking 0.08 ms. -----------
+The maximum node biclique: ( 340, 11 )
+Finish constructNetwork (number of nodes in U1: 340; U2:12; total: 354). with 0 total bipartite edges. 
+wU1:1; wU2:28. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 341. Taking 0.069 ms. -----------
+The maximum node biclique: ( 340, 12 )
+Finish constructNetwork (number of nodes in U1: 38; U2:12; total: 52). with 0 total bipartite edges. 
+wU1:1; wU2:3. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 39. Taking 0.01 ms. -----------
+The maximum node biclique: ( 38, 12 )
+Finish constructNetwork (number of nodes in U1: 38; U2:12; total: 52). with 0 total bipartite edges. 
+wU1:1; wU2:3. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 39. Taking 0.009 ms. -----------
+The maximum node biclique: ( 38, 12 )
+Finish constructNetwork (number of nodes in U1: 30; U2:12; total: 44). with 0 total bipartite edges. 
+wU1:1; wU2:2. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 31. Taking 0.008 ms. -----------
+The maximum node biclique: ( 30, 12 )
+Finish constructNetwork (number of nodes in U1: 30; U2:12; total: 44). with 0 total bipartite edges. 
+wU1:1; wU2:2. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 31. Taking 0.008 ms. -----------
+The maximum node biclique: ( 30, 12 )
+Finish constructNetwork (number of nodes in U1: 30; U2:12; total: 44). with 0 total bipartite edges. 
+wU1:1; wU2:2. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 31. Taking 0.008 ms. -----------
+The maximum node biclique: ( 30, 12 )
+Finish constructNetwork (number of nodes in U1: 30; U2:12; total: 44). with 0 total bipartite edges. 
+wU1:1; wU2:2. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 31. Taking 0.008 ms. -----------
+The maximum node biclique: ( 30, 12 )
+Finish constructNetwork (number of nodes in U1: 38; U2:12; total: 52). with 0 total bipartite edges. 
+wU1:1; wU2:3. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 39. Taking 0.01 ms. -----------
+The maximum node biclique: ( 38, 12 )
+Finish constructNetwork (number of nodes in U1: 340; U2:12; total: 354). with 0 total bipartite edges. 
+wU1:1; wU2:28. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 341. Taking 0.069 ms. -----------
+The maximum node biclique: ( 340, 12 )
+Finish constructNetwork (number of nodes in U1: 765; U2:11; total: 778). with 0 total bipartite edges. 
+wU1:1; wU2:69. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 766. Taking 0.153 ms. -----------
+The maximum node biclique: ( 765, 11 )
+Finish constructNetwork (number of nodes in U1: 765; U2:12; total: 779). with 0 total bipartite edges. 
+wU1:1; wU2:63. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 766. Taking 0.149 ms. -----------
+The maximum node biclique: ( 765, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.019 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.017 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 765; U2:12; total: 779). with 0 total bipartite edges. 
+wU1:1; wU2:63. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 766. Taking 0.149 ms. -----------
+The maximum node biclique: ( 765, 12 )
+Finish constructNetwork (number of nodes in U1: 340; U2:12; total: 354). with 0 total bipartite edges. 
+wU1:1; wU2:28. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 341. Taking 0.079 ms. -----------
+The maximum node biclique: ( 340, 12 )
+Finish constructNetwork (number of nodes in U1: 254; U2:11; total: 267). with 0 total bipartite edges. 
+wU1:1; wU2:23. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.052 ms. -----------
+The maximum node biclique: ( 254, 11 )
+Finish constructNetwork (number of nodes in U1: 254; U2:12; total: 268). with 0 total bipartite edges. 
+wU1:1; wU2:21. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.051 ms. -----------
+The maximum node biclique: ( 254, 12 )
+Finish constructNetwork (number of nodes in U1: 19; U2:12; total: 33). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 20. Taking 0.006 ms. -----------
+The maximum node biclique: ( 19, 12 )
+Finish constructNetwork (number of nodes in U1: 19; U2:12; total: 33). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 20. Taking 0.006 ms. -----------
+The maximum node biclique: ( 19, 12 )
+Finish constructNetwork (number of nodes in U1: 14; U2:12; total: 28). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 12 )
+Finish constructNetwork (number of nodes in U1: 14; U2:12; total: 28). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 12 )
+Finish constructNetwork (number of nodes in U1: 14; U2:12; total: 28). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 12 )
+Finish constructNetwork (number of nodes in U1: 14; U2:12; total: 28). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 12 )
+Finish constructNetwork (number of nodes in U1: 19; U2:12; total: 33). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 20. Taking 0.006 ms. -----------
+The maximum node biclique: ( 19, 12 )
+Finish constructNetwork (number of nodes in U1: 254; U2:12; total: 268). with 0 total bipartite edges. 
+wU1:1; wU2:21. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.051 ms. -----------
+The maximum node biclique: ( 254, 12 )
+Finish constructNetwork (number of nodes in U1: 115; U2:12; total: 129). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 116. Taking 0.025 ms. -----------
+The maximum node biclique: ( 115, 12 )
+Finish constructNetwork (number of nodes in U1: 254; U2:12; total: 268). with 0 total bipartite edges. 
+wU1:1; wU2:21. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.051 ms. -----------
+The maximum node biclique: ( 254, 12 )
+Finish constructNetwork (number of nodes in U1: 254; U2:10; total: 266). with 0 total bipartite edges. 
+wU1:1; wU2:25. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.052 ms. -----------
+The maximum node biclique: ( 254, 10 )
+Finish constructNetwork (number of nodes in U1: 254; U2:11; total: 267). with 0 total bipartite edges. 
+wU1:1; wU2:23. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.052 ms. -----------
+The maximum node biclique: ( 254, 11 )
+Finish constructNetwork (number of nodes in U1: 19; U2:11; total: 32). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 20. Taking 0.006 ms. -----------
+The maximum node biclique: ( 19, 11 )
+Finish constructNetwork (number of nodes in U1: 19; U2:11; total: 32). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 20. Taking 0.006 ms. -----------
+The maximum node biclique: ( 19, 11 )
+Finish constructNetwork (number of nodes in U1: 14; U2:11; total: 27). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 11 )
+Finish constructNetwork (number of nodes in U1: 14; U2:11; total: 27). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 11 )
+Finish constructNetwork (number of nodes in U1: 14; U2:11; total: 27). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 11 )
+Finish constructNetwork (number of nodes in U1: 14; U2:11; total: 27). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 15. Taking 0.005 ms. -----------
+The maximum node biclique: ( 14, 11 )
+Finish constructNetwork (number of nodes in U1: 19; U2:11; total: 32). with 0 total bipartite edges. 
+wU1:1; wU2:1. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 20. Taking 0.005 ms. -----------
+The maximum node biclique: ( 19, 11 )
+Finish constructNetwork (number of nodes in U1: 254; U2:11; total: 267). with 0 total bipartite edges. 
+wU1:1; wU2:23. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.052 ms. -----------
+The maximum node biclique: ( 254, 11 )
+Finish constructNetwork (number of nodes in U1: 115; U2:11; total: 128). with 0 total bipartite edges. 
+wU1:1; wU2:10. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 116. Taking 0.025 ms. -----------
+The maximum node biclique: ( 115, 11 )
+Finish constructNetwork (number of nodes in U1: 254; U2:11; total: 267). with 0 total bipartite edges. 
+wU1:1; wU2:23. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.052 ms. -----------
+The maximum node biclique: ( 254, 11 )
+Finish constructNetwork (number of nodes in U1: 254; U2:11; total: 267). with 0 total bipartite edges. 
+wU1:1; wU2:23. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 255. Taking 0.061 ms. -----------
+The maximum node biclique: ( 254, 11 )
+Finish constructNetwork (number of nodes in U1: 375; U2:11; total: 388). with 0 total bipartite edges. 
+wU1:1; wU2:34. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.084 ms. -----------
+The maximum node biclique: ( 375, 11 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.076 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.017 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.076 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 167; U2:12; total: 181). with 0 total bipartite edges. 
+wU1:1; wU2:13. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 168. Taking 0.034 ms. -----------
+The maximum node biclique: ( 167, 12 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.075 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 120; U2:12; total: 134). with 0 total bipartite edges. 
+wU1:1; wU2:10. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 121. Taking 0.026 ms. -----------
+The maximum node biclique: ( 120, 12 )
+Finish constructNetwork (number of nodes in U1: 120; U2:11; total: 133). with 0 total bipartite edges. 
+wU1:1; wU2:10. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 121. Taking 0.025 ms. -----------
+The maximum node biclique: ( 120, 11 )
+Finish constructNetwork (number of nodes in U1: 375; U2:11; total: 388). with 0 total bipartite edges. 
+wU1:1; wU2:34. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.075 ms. -----------
+The maximum node biclique: ( 375, 11 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.075 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.076 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 167; U2:12; total: 181). with 0 total bipartite edges. 
+wU1:1; wU2:13. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 168. Taking 0.034 ms. -----------
+The maximum node biclique: ( 167, 12 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.087 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 120; U2:12; total: 134). with 0 total bipartite edges. 
+wU1:1; wU2:10. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 121. Taking 0.026 ms. -----------
+The maximum node biclique: ( 120, 12 )
+Finish constructNetwork (number of nodes in U1: 120; U2:11; total: 133). with 0 total bipartite edges. 
+wU1:1; wU2:10. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 121. Taking 0.026 ms. -----------
+The maximum node biclique: ( 120, 11 )
+Finish constructNetwork (number of nodes in U1: 375; U2:12; total: 389). with 0 total bipartite edges. 
+wU1:1; wU2:31. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 376. Taking 0.076 ms. -----------
+The maximum node biclique: ( 375, 12 )
+Finish constructNetwork (number of nodes in U1: 109; U2:11; total: 122). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 110. Taking 0.023 ms. -----------
+The maximum node biclique: ( 109, 11 )
+Finish constructNetwork (number of nodes in U1: 109; U2:12; total: 123). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 110. Taking 0.024 ms. -----------
+The maximum node biclique: ( 109, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.017 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.017 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.025 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.014 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 58; U2:12; total: 72). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 59. Taking 0.013 ms. -----------
+The maximum node biclique: ( 58, 12 )
+Finish constructNetwork (number of nodes in U1: 81; U2:12; total: 95). with 0 total bipartite edges. 
+wU1:1; wU2:6. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 82. Taking 0.018 ms. -----------
+The maximum node biclique: ( 81, 12 )
+Finish constructNetwork (number of nodes in U1: 109; U2:12; total: 123). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 110. Taking 0.024 ms. -----------
+The maximum node biclique: ( 109, 12 )
+Finish constructNetwork (number of nodes in U1: 53; U2:12; total: 67). with 0 total bipartite edges. 
+wU1:1; wU2:4. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 54. Taking 0.013 ms. -----------
+The maximum node biclique: ( 53, 12 )
+Finish constructNetwork (number of nodes in U1: 109; U2:12; total: 123). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 110. Taking 0.024 ms. -----------
+The maximum node biclique: ( 109, 12 )
+Finish constructNetwork (number of nodes in U1: 26; U2:12; total: 40). with 0 total bipartite edges. 
+wU1:1; wU2:2. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 27. Taking 0.007 ms. -----------
+The maximum node biclique: ( 26, 12 )
+Finish constructNetwork (number of nodes in U1: 26; U2:11; total: 39). with 0 total bipartite edges. 
+wU1:1; wU2:2. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 27. Taking 0.007 ms. -----------
+The maximum node biclique: ( 26, 11 )
+Finish constructNetwork (number of nodes in U1: 109; U2:12; total: 123). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 110. Taking 0.024 ms. -----------
+The maximum node biclique: ( 109, 12 )
+Finish constructNetwork (number of nodes in U1: 109; U2:12; total: 123). with 0 total bipartite edges. 
+wU1:1; wU2:9. Taking 0 ms.
+------finish bfs------
+Finish finding max-flow: 0 after 0iterations.
+-------------Finish minCut. Total number of nodeds Reached from s: 110. Taking 0.023 ms. -----------
+The maximum node biclique: ( 109, 12 )
+19.csv,18.csv,1
+15.csv,12.csv,1
+8.csv,7.csv,1
+16.csv,11.csv,1
+16.csv,10.csv,1
+15.csv,14.csv,1
+15.csv,13.csv,1
+4.csv,2.csv,1
+9.csv,16.csv,0.743119
+12.csv,11.csv,0.716049
+8.csv,2.csv,0.490196
+3.csv,2.csv,0.444444
+5.csv,2.csv,0.332026
+9.csv,7.csv,0.290667
+2.csv,1.csv,0.0765
+1.csv,0.csv,0.916667
+19.csv,17.csv,0.916667
+6.csv,5.csv,0.916667
+19.csv,18.csv,1
+11.csv,10.csv,1
+16.csv,11.csv,1
+4.csv,2.csv,1
+8.csv,7.csv,1
+15.csv,14.csv,1
+15.csv,13.csv,1
+13.csv,12.csv,1
+7.csv,4.csv,0.940816
+4.csv,1.csv,0.922208
+3.csv,2.csv,0.882862
+5.csv,2.csv,0.830901
+9.csv,10.csv,0.826237
+16.csv,13.csv,0.78126
+9.csv,8.csv,0.647836
+17.csv,10.csv,0.0802469
+1.csv,0.csv,0.916667
+19.csv,17.csv,0.916667
+6.csv,5.csv,0.916667
+19.csv,18.csv,1
+15.csv,12.csv,1
+8.csv,7.csv,1
+16.csv,11.csv,1
+16.csv,10.csv,1
+15.csv,14.csv,1
+15.csv,13.csv,1
+4.csv,2.csv,1
+9.csv,16.csv,0.743119
+12.csv,11.csv,0.716049
+8.csv,2.csv,0.490196
+3.csv,2.csv,0.444444
+5.csv,2.csv,0.332026
+9.csv,7.csv,0.290667
+2.csv,1.csv,0.0765
+1.csv,0.csv,0.916667
+19.csv,17.csv,0.916667
+6.csv,5.csv,0.916667
+'

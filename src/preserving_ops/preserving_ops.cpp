@@ -145,7 +145,7 @@ void preserving_ops::load_cluster(const string &file)
 double cell_level_jaccard_for_version_pair(const vector<vector<string>> &A, const vector<vector<string>> &B, unordered_map<int, vector<int>> &row_g2l_B, unordered_map<int, int> &col_g2l_B)
 {
     int common_cnt = 0, cnt = 0;
-    //cout << A.size() - 1 << " rows; " << A[0].size() - 1 << " columns." << endl;
+    cout << A.size() - 1 << " rows; " << A[0].size() - 1 << " columns." << endl;
     unordered_map<int,int> matched_rows_B;
     for (int i = 1; i < A.size(); ++i)
     { // row i
@@ -170,13 +170,13 @@ double cell_level_jaccard_for_version_pair(const vector<vector<string>> &A, cons
                 continue;
             } // no matched column
             int cid_B = col_g2l_B[global_cid];
-            // cout << global_cid << " " << cid_B << endl;
+            //cout << global_cid << " -- " << cid_B << endl;
             for (const auto& rid_B : rid_Bs) {
-                // if (rid_B >= B.size() || cid_B >= B[0].size())
-                // {
-                //     cout << global_rid << " " << rid_B << ">=" << B.size() << ";" << global_cid << " " << cid_B << ">=" << B[0].size() << endl;
-                //     exit(1);
-                // }
+                if (rid_B >= B.size() || cid_B >= B[0].size())
+                {
+                    cout << global_rid << " " << rid_B << ">=" << B.size() << ";" << global_cid << " " << cid_B << ">=" << B[0].size() << endl;
+                    exit(1);
+                }
                 if (cid_B + 1 >= B[rid_B + 1].size())
                 {
                     cout << "---------ERROR " << i << "," << j << ";" << rid_B << "," << cid_B << endl;
@@ -184,11 +184,15 @@ double cell_level_jaccard_for_version_pair(const vector<vector<string>> &A, cons
                     exit(1);
                     continue; // this row does not have this column
                 }
+                //cout << rid_B << endl;
                 if (A[i][j] == B[rid_B + 1][cid_B + 1])
                     ++rid_2_common_cnt[rid_B];
             }
         }
+        if (rid_2_common_cnt.empty()) continue; //no matched
+        //cout << " here \n";
         int selected_rid = rid_2_common_cnt.begin()->first;
+        //cout << selected_rid << endl;
         for (const auto& ele : rid_2_common_cnt) {
             if (matched_rows_B.count(ele.first)) continue; // already matched by other row in A
             if (ele.second > rid_2_common_cnt[selected_rid] || matched_rows_B.count(selected_rid)) {
@@ -353,7 +357,20 @@ void preserving_ops::aggregate_each_column_set()
 
 void preserving_ops::cell_level_jaccard()
 {
-    for (const auto& each_cluster : clusters) {
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i) {
+        exact_scores[i][i].cell_jaccard = 1;
+        for (int j = 0; j < i; ++j) {
+            string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            //cout << "=======" << file_i << " vs.(cell-jaccard) " << file_j << "=======" << endl;
+            double sim = cell_level_jaccard_for_version_pair(matrixes[i], matrixes[j], row_g2l[j], col_g2l[j]);
+            exact_scores[i][j].cell_jaccard = sim;
+            exact_scores[j][i].cell_jaccard = sim;
+        }
+    }
+    /*instead of calculating within each cluster*/
+/*     for (const auto& each_cluster : clusters) {
         const vector<int>& file_ids = each_cluster.file_ids;
         for (int i = 0; i < file_ids.size(); ++i) {
             int u = file_ids[i];
@@ -369,12 +386,27 @@ void preserving_ops::cell_level_jaccard()
             }
         }
     }
+ */    
     cout << "------------finish calculating cell level jaccard similarity-----------\n";
 }
 
 void preserving_ops::column_level_jaccard() {
     aggregate_each_column_set();
-    for (const auto &each_cluster : clusters)
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i)
+    {
+        exact_scores[i][i].col_jaccard = 1;
+        for (int j = 0; j < i; ++j)
+        {
+            string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            //cout << "=======" << file_i << " vs.(col-jaccard) " << file_j << "=======" << endl;
+            double sim = column_level_jaccard_for_version_pair(file_columns[i], file_columns[j], col_g2l[j]);
+            exact_scores[i][j].col_jaccard = sim;
+            exact_scores[j][i].col_jaccard = sim;
+        }
+    }
+/*     for (const auto &each_cluster : clusters)
     {
         const vector<int> &file_ids = each_cluster.file_ids;
         for (int i = 0; i < file_ids.size(); ++i)
@@ -392,27 +424,41 @@ void preserving_ops::column_level_jaccard() {
                 exact_scores[v][u].col_jaccard = sim;
             }
         }
-    }
+    } */
     cout << "------------finish calculating column level jaccard similarity------------\n";
 }
 
 void preserving_ops::relational_sim() {
-    for (const auto& each_cluster : clusters) {
-        const vector<int>& file_ids = each_cluster.file_ids;
-        for (int i = 0; i < file_ids.size(); ++i) {
-            int u = file_ids[i];
-            exact_scores[u][u].relational = 1;
-            for (int j = 0; j < i; ++j) {
-                int v = file_ids[j];
-                string file_u = filePaths[u].substr(filePaths[u].find_last_of("/\\") + 1);
-                string file_v = filePaths[v].substr(filePaths[v].find_last_of("/\\") + 1);
-                cout << "=======" << file_u << " vs.(relational-jaccard) " << file_v << "=======" << endl;
-                double sim = relational_sim_for_version_pair(matrixes[u], matrixes[v], row_g2l[v], col_g2l[v]);
-                exact_scores[u][v].relational = sim;
-                exact_scores[v][u].relational = sim;
-            }
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i)
+    {
+        exact_scores[i][i].relational = 1;
+        for (int j = 0; j < i; ++j)
+        {
+            string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            //cout << "=======" << file_i << " vs.(relational-jaccard) " << file_j << "=======" << endl;
+            double sim = relational_sim_for_version_pair(matrixes[i], matrixes[j], row_g2l[j], col_g2l[j]);
+            exact_scores[i][j].relational = sim;
+            exact_scores[j][i].relational = sim;
         }
     }
+    // for (const auto& each_cluster : clusters) {
+    //     const vector<int>& file_ids = each_cluster.file_ids;
+    //     for (int i = 0; i < file_ids.size(); ++i) {
+    //         int u = file_ids[i];
+    //         exact_scores[u][u].relational = 1;
+    //         for (int j = 0; j < i; ++j) {
+    //             int v = file_ids[j];
+    //             string file_u = filePaths[u].substr(filePaths[u].find_last_of("/\\") + 1);
+    //             string file_v = filePaths[v].substr(filePaths[v].find_last_of("/\\") + 1);
+    //             cout << "=======" << file_u << " vs.(relational-jaccard) " << file_v << "=======" << endl;
+    //             double sim = relational_sim_for_version_pair(matrixes[u], matrixes[v], row_g2l[v], col_g2l[v]);
+    //             exact_scores[u][v].relational = sim;
+    //             exact_scores[v][u].relational = sim;
+    //         }
+    //     }
+    // }
 }
 
 void preserving_ops::print_sim_scores()
@@ -457,3 +503,57 @@ void preserving_ops::print_sim_scores()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////
+// healper
+void get_file_2_cluster(vector<int> &file2cluster, const vector<cluster> &clusters)
+{
+    for (const auto& each_cluster : clusters) {
+        int id = each_cluster.id;
+        for (const auto& fid : each_cluster.file_ids) {
+            file2cluster[fid] = id;
+        }
+    }
+}
+
+void preserving_ops::convert_adj_matrix_2_edge_list(vector<edge> &cross_edges, vector<vector<edge>> &within_edges, const string &metric)
+{
+    int artifact_cnt = filePaths.size();
+    vector<int> file2cluster(artifact_cnt);
+    get_file_2_cluster(file2cluster, clusters);
+    within_edges.resize(clusters.size());
+    for (int i = 0; i < artifact_cnt; ++i)
+    { // iterate through file ids
+        string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+        int cluster_i = file2cluster[i];
+        for (int j = 0; j < i; ++j)
+        {
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            // use diff instead of similarity score
+            edge e = edge(file_i, file_j, 1 - exact_scores[i][j].get_metric(metric));
+            
+            int cluster_j = file2cluster[j];
+            if (cluster_i == cluster_j)
+                within_edges[cluster_i].push_back(e);
+            else cross_edges.push_back(e);
+        }
+    }
+}
+
+void preserving_ops::lineage_construction_mst(const string& metric) {
+    vector<edge> cross_edges;           // edges that with nodes from different clusters
+    vector<vector<edge>> within_edges; // each cluster consist of a sub-graph with edges
+    convert_adj_matrix_2_edge_list(cross_edges, within_edges, metric); //metric
+    kruskal inferred_G;               // inferred lineage graph
+    inferred_G.initialize_G(filePaths.size(), cross_edges);
+
+    for (const auto& each_cluster: clusters) {
+        int cluster_id = each_cluster.id;
+        kruskal sub_mst(each_cluster.file_ids.size(), within_edges[cluster_id]);
+        sub_mst.kruskalMST();
+        //cout << "--------------------" << cluster_id << "-------------------\n";
+        //sub_mst.printMST();
+        inferred_G.insert_mst_edges(sub_mst.get_mst_edges());
+    }
+    inferred_G.kruskalMST();
+    inferred_G.printMST("./src/preserving_ops/infered_mst_" + metric + ".csv");
+}

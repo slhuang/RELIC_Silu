@@ -11,15 +11,20 @@
 #include <unordered_set>
 #include <iomanip>
 #include "../../include/profiling/schema_matching.h"
-//#include "../../include/profiling/row_matching.h"
 #include "../../include/pre_clustering/pre_clustering.h"
 #include "mincut.h"
+#include "kruskal.h"
 using namespace std;
 
 struct metrics {
     double cell_jaccard;
     double col_jaccard;
     double relational; //# of instructions
+    double get_metric(string metric = "cell") {
+        if (metric == "rel") return cell_jaccard;
+        if (metric == "col") return col_jaccard;
+        return cell_jaccard;
+    }
 };
 
 struct colStats {
@@ -76,4 +81,10 @@ class preserving_ops {
     void column_level_jaccard();
     void relational_sim();
     void print_sim_scores();
+    // helper
+    void convert_adj_matrix_2_edge_list(vector<edge> &all_edges, vector<vector<edge>> &cluster_edges, const string &metric = "cell");
+    // construct lineage graph based on MDL principle
+    void lineage_construction_mst(const string &metric = "cell"); // intra-cluster & inter-cluster
+    // some other approaches e.g., threshold-based
+    void lineage_construction_threshold();
 };
