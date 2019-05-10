@@ -78,12 +78,13 @@ void row_matching::detect_pk_by_sampling(int sampleCnt) {
             if (col_distincts[cid].size() > col_distincts[pk_cid].size()) {
                 pk_cid = cid;
             }
-            else if (col_distincts[cid].size() == col_distincts[pk_cid].size()) {
-                // break the tie: the one with longer name is the pk
-                if (col_names[fid][cid].size() > col_names[fid][pk_cid].size()) {
-                    pk_cid = cid;
-                }
-            }
+            /*TODO: take other files' pk into account*/
+            // else if (col_distincts[cid].size() == col_distincts[pk_cid].size()) {
+            //     // break the tie: the one with longer name is the pk
+            //     if (col_names[fid][cid].size() > col_names[fid][pk_cid].size()) {
+            //         pk_cid = cid;
+            //     }
+            // }
         }
         // pks: the global column id
         pks.push_back({pk_cid, col_l2g[fid][pk_cid]});
@@ -112,7 +113,12 @@ void row_matching::row_match_by_pk_name_and_value() {
             matrixes[fid][rid][0] = global_rid;
             row_g2l[fid][global_rid].push_back(rid - 1);
             row_l2g[fid][rid - 1] = global_rid;
+            // if (filePaths[fid].find("19.csv") != string::npos)
+            // {
+            //     cout << fid << " " << rid -  1 << " " << cid << " " << name_val << endl;
+            // }
         }
+        cout << fid << " " << filePaths[fid] << " " << matrixes[fid].size() -1 << endl;
     }
     cout << "---------------finish row matching-----------------\n";
 }

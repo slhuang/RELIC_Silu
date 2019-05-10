@@ -44,7 +44,7 @@ bool bfs(vector<unordered_map<int, int>> &rGraph, int s, int t, vector<int> &par
             }
         }
     }
-    cout << "------finish bfs------" << endl;
+    //cout << "------finish bfs------" << endl;
     // printRgraph(rGraph);
     return false; // there is no s-t path in the residual graph
 }
@@ -82,8 +82,8 @@ vector<bool> minCut(vector<unordered_map<int, int>> rGraph, int s, int t)
             int u = parent[v];
             augmentFlow = min(augmentFlow, rGraph[u][v]);
         }
-        if (iter % 1000 == 0)
-            cout << "augmentFlow in this iteration: " << augmentFlow << endl;
+        // if (iter % 1000 == 0)
+        //     cout << "augmentFlow in this iteration: " << augmentFlow << endl;
         //update the residual capacities of the edges and reverse edge along the path in the residual graph
         for (int v = t; v != s; v = parent[v])
         {
@@ -98,18 +98,18 @@ vector<bool> minCut(vector<unordered_map<int, int>> rGraph, int s, int t)
         }
         maxFlow += augmentFlow;
         iter++;
-        if (iter % 1000 == 0)
-        {
-            cout << "Min cut, in " << iter << " iteration: current flow is " << maxFlow << "." << endl;
-            cout << "Taking " << ((double)(clock() - tsub) * 1000 / CLOCKS_PER_SEC) << " ms in this iteration." << endl;
-        }
+        // if (iter % 1000 == 0)
+        // {
+        //     cout << "Min cut, in " << iter << " iteration: current flow is " << maxFlow << "." << endl;
+        //     cout << "Taking " << ((double)(clock() - tsub) * 1000 / CLOCKS_PER_SEC) << " ms in this iteration." << endl;
+        // }
     }
     cout << "Finish finding max-flow: " << maxFlow << " after " << iter << "iterations." << endl;
     // now we have the max flow, find the vertices reachable from s in the residual graph
     vector<bool> visited(rGraph.size(), false);
     int reached = 0;
     dfs(rGraph, s, visited, reached);
-    cout << "-------------Finish minCut. Total number of nodeds Reached from s: " << reached << ". Taking " << ((double)(clock() - tt) * 1000 / CLOCKS_PER_SEC) << " ms. -----------" << endl;
+    //cout << "-------------Finish minCut. Total number of nodeds Reached from s: " << reached << ". Taking " << ((double)(clock() - tt) * 1000 / CLOCKS_PER_SEC) << " ms. -----------" << endl;
     return visited; // return set S, where visited[] is true
 }
 

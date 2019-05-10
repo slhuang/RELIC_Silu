@@ -363,7 +363,7 @@ void preserving_ops::cell_level_jaccard()
         for (int j = 0; j < i; ++j) {
             string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
             string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
-            //cout << "=======" << file_i << " vs.(cell-jaccard) " << file_j << "=======" << endl;
+            cout << "=======" << file_i << " vs.(cell-jaccard) " << file_j << "=======" << endl;
             double sim = cell_level_jaccard_for_version_pair(matrixes[i], matrixes[j], row_g2l[j], col_g2l[j]);
             exact_scores[i][j].cell_jaccard = sim;
             exact_scores[j][i].cell_jaccard = sim;
@@ -463,43 +463,39 @@ void preserving_ops::relational_sim() {
 
 void preserving_ops::print_sim_scores()
 {
-    for (const auto& each_cluster : clusters) {
-        const vector<int>& file_ids = each_cluster.file_ids;
-        ofstream fout_cell("./src/preserving_ops/result/cell_sim_" + to_string(each_cluster.id) + ".csv");
-        ofstream fout_col("./src/preserving_ops/result/col_sim_" + to_string(each_cluster.id) + ".csv");
-        ofstream fout_relation("./src/preserving_ops/result/relation_sim_" + to_string(each_cluster.id) + ".csv");
-        fout_cell << "name";
-        fout_col << "name";
-        fout_relation << "name";
-        for (int i = 0; i < file_ids.size(); ++i) {
-            int u = file_ids[i];
-            string file_u = filePaths[u].substr(filePaths[u].find_last_of("/\\") + 1);
-            fout_cell << "," + file_u;
-            fout_col << "," + file_u;
-            fout_relation << "," + file_u;
+    ofstream fout_cell("./src/preserving_ops/result/cell_sim.csv");
+    ofstream fout_col("./src/preserving_ops/result/col_sim.csv");
+    ofstream fout_relation("./src/preserving_ops/result/relation_sim.csv");
+    fout_cell << "name";
+    fout_col << "name";
+    fout_relation << "name";
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i) {
+        string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+        fout_cell << "," + file_i;
+        fout_col << "," + file_i;
+        fout_relation << "," + file_i;
+    }
+    fout_cell << endl;
+    fout_col << endl;
+    fout_relation << endl; 
+    //////////finish header, start with value
+    for (int i = 0; i < artifact_cnt; ++i)
+    {
+        string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+        fout_cell << file_i;
+        fout_col << file_i;
+        fout_relation << file_i;
+        for (int j = 0; j < artifact_cnt; ++j)
+        {
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            fout_cell << "," << exact_scores[i][j].cell_jaccard;
+            fout_col << "," << exact_scores[i][j].col_jaccard;
+            fout_relation << "," << exact_scores[i][j].relational;
         }
         fout_cell << endl;
         fout_col << endl;
         fout_relation << endl;
-        for (int i = 0; i < file_ids.size(); ++i) {
-            int u = file_ids[i];
-            string file_u = filePaths[u].substr(filePaths[u].find_last_of("/\\") + 1);
-            fout_cell << file_u;
-            fout_col << file_u;
-            fout_relation << file_u;
-            for (int j = 0; j < file_ids.size(); ++j)
-            {
-                int v = file_ids[j];
-                string file_v = filePaths[v].substr(filePaths[v].find_last_of("/\\") + 1);
-                fout_cell << "," << exact_scores[u][v].cell_jaccard;
-                fout_col << "," << exact_scores[u][v].col_jaccard;
-                fout_relation << "," << exact_scores[u][v].relational;
-                //cout << file_u << "," << file_v << "," << exact_scores[u][v].cell_jaccard << "," << exact_scores[u][v].col_jaccard << endl;
-            }
-            fout_cell << endl;
-            fout_col << endl;
-            fout_relation << endl;
-        }
     }
 }
 

@@ -25,7 +25,6 @@ string infer_data_type(const string& val, string& curDataType) {
     if(is_null_string(val) && curDataType == "null") return "null";
     bool isNumber = is_number(val);
     if ((curDataType == "number" || curDataType == "null") && isNumber) return "number";
-    exit(1);
     return "string";
 }
 
@@ -45,6 +44,7 @@ void schema_matching::initialize_synonyms(const string &file, const char& delimi
             synonyms.un(name1, name2);
         }
     }
+    cout << "-----------initialize synonyms------------\n";
 }
 
 /*load each file in the directory;
@@ -86,6 +86,7 @@ void schema_matching::load_header_and_sample_value(int sampleCnt){
             }
         }
     }
+    cout << "--------schema matching load_header_and_sample_value-----------\n";
 }
 
 /* 

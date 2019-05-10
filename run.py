@@ -21,12 +21,11 @@ def pre_clustering(clustering_strategy):
     output = proc.communicate()[0]
     print('Got stdout:', str(output).replace('\\r', '\n').replace('\\n', '\n'))
 
-def clear_sim_files():
-    cmd = 'rm /home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/src/preserving_ops/result/*.csv'
+def clear_files():
+    cmd = 'rm /home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/src/profiling/*.csv /home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/src/pre_clustering/*.csv /home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/src/preserving_ops/result/*.csv /home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/src/preserving_ops/*.csv'
     os.system(cmd)
 
 def preserving_ops(dir_path, endwith):
-    clear_sim_files()
     files=sorted(os.listdir(dir_path))
     print (files)
     artifacts = ''
@@ -50,9 +49,10 @@ def run():
     #pre_clustering('-exact_schema')
     #preserving_ops('/home/slhuang/Public/2018-fall/lineage_inference/case_study/nb_123977/artifacts/', '.csv') #nb_123977/artifacts/') # /repo_user/')
 
-    profiling('/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/', '.csv') #retail/') #nb_123977/artifacts/')
-    pre_clustering('-exact_schema')
-    preserving_ops('/home/slhuang/Public/2019_spring/lineage_inference/workflow_gen/workflow-gen/dataset/', '.csv') #nb_123977/artifacts/') # /repo_user/')
+    clear_files()
+    profiling('/home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/dataset/', '.csv') #retail/') #nb_123977/artifacts/')
+    pre_clustering('-exact_schema')  #('-no_pre_cluster')#
+    preserving_ops('/home/slhuang/Public/2019_spring/lineage_inference/code/RELIC/RELIC_Silu/dataset/', '.csv') #nb_123977/artifacts/') # /repo_user/')
     
 if __name__ == '__main__':
     run()

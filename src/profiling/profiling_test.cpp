@@ -27,7 +27,7 @@ void parser (int argc, char* argv[]) {
 int main (int argc, char* argv[]) {
     parser(argc, argv);
     schema_matching sm(file_paths);
-    sm.initialize_synonyms("./src/profiling/synonyms.csv");
+    sm.initialize_synonyms("./src/profiling/synonyms/synonyms.csv");
     sm.load_header_and_sample_value(10); // load top-10 lines
     sm.schema_match_by_name_and_type();
     sm.write_mapping_to_file();

@@ -36,9 +36,9 @@ int main(int argc, char *argv[])
     preserving_ops ops(file_paths);
     ops.cell_level_jaccard();
     ops.column_level_jaccard();
-    ops.relational_sim();
+    //ops.relational_sim();
     ops.print_sim_scores();
     ops.lineage_construction_mst("cell");
     ops.lineage_construction_mst("col");
-    ops.lineage_construction_mst("rel");
+    //ops.lineage_construction_mst("rel");
 }

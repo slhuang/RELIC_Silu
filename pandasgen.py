@@ -2,7 +2,7 @@
 
 import pandas as pd
 import numpy as np
-
+import sys 
 import traceback
 
 from lineage import LineageTracker
@@ -14,8 +14,9 @@ class PandasVersionGenerator:
                  maxVal=100, directory='dataset/', scale=10.):
         self.minVal = minVal
         self.maxVal = maxVal
-
         rowsize, colsize = shape
+        self.rid = rowsize  ### global rid
+         
         self.dataset = []
         base_array = np.random.randint(minVal, high=maxVal,
                                        size=(rowsize, colsize))
@@ -54,6 +55,43 @@ class PandasVersionGenerator:
             choice = np.random.choice(i, 1, p=prob)[0]
 
         return choice
+
+    def apply_ops(self, ops_function, **kwargs):
+        base_id = self.select_rand_dataset()
+        base_df = self.dataset[base_id]
+        parents = [base_id]
+        ops_str = ''  ### concatenate of a sequence of ops
+        for op_function in ops_function:
+            #print (op_function, '------')
+            if op_function == merge:  # Merge is special case
+                choice = self.select_rand_dataset(for_merge=True)
+                if choice is None:  # Not enough generated datasets for merge
+                    pass
+                if choice[0] == parents[0]:
+                    df2 = self.dataset[choice[1]]
+                    parents.append(choice[1])
+                else:
+                    df2 = self.dataset[choice[0]]
+                    parents.append(choice[0])
+                new_df = merge(base_df, df2).dropna()
+            else:
+                if op_function == add_rows:
+                    to_add = np.random.randint(1, max(2,len(base_df.index)))
+                    new_df = add_rows(base_df, self.rid, to_add).dropna()
+                    self.rid += to_add  ## keep global rid
+                else:
+                    new_df = op_function(base_df, **kwargs).dropna()
+                if new_df.empty:
+                    raise pd.errors.EmptyDataError
+            base_df = new_df
+            ops_str += str(op_function).split()[1] +'\n'
+            #print (ops_str)
+        ### materialize new artifact and add links
+        self.lineage.new_item(str(len(self.dataset)), new_df)
+        self.dataset.append(new_df)
+        for parent in parents:
+            #print (parent,  self.get_last_label(), ops_str)
+            self.lineage.link(str(parent), self.get_last_label(), ops_str)
 
     def apply_op(self, op_function, **kwargs):
         if op_function == merge:  # Merge is special case
@@ -106,9 +144,17 @@ def assign(df):
 def expanding(df):
     window = get_rand_window()
     func = select_rand_aggregate()
-    method = getattr(df.expanding(window), func)
-    return method()
-
+    col_cnt = np.random.randint(1, len(df.columns))
+    cols = select_rand_cols(df, col_cnt)
+    method = getattr(df[cols].expanding(window), func)
+    tmp = method()
+    #print(tmp)
+    df[cols] = tmp
+    return df
+    # new_df = df.copy()
+    # method = getattr(new_df[cols].expanding(window), func)
+    # new_df[cols] = method()
+    # return new_df
 
 def groupby(df):
     col = select_rand_cols(df)[0]
@@ -137,26 +183,36 @@ def merge(df1, df2):
 
 
 def nlargest(df):
-    n = np.random.randint(1, len(df.index))
+    n = np.random.randint(len(df.index)/2, max(2,len(df.index)))
     col = select_rand_cols(df)[0]
     return df.nlargest(n, col)
 
 
 def nsmallest(df):
-    n = np.random.randint(1, len(df.index))
+    n = np.random.randint(len(df.index)/2, max(2,len(df.index)))
     col = select_rand_cols(df)[0]
     return df.nsmallest(n, col)
 
 
 def reindex(df):
-    return df.reindex(get_row_permutation())
+    return df.reindex(get_row_permutation(df))
 
 
 def rolling(df):
     window = get_rand_window()
     func = select_rand_aggregate()
-    method = getattr(df.rolling(window), func)
-    return method()
+    col_cnt = np.random.randint(1, len(df.columns))
+    cols = select_rand_cols(df, col_cnt)
+    method = getattr(df[cols].rolling(window), func)
+    tmp = method()
+    #print(tmp)
+    df[cols] = tmp
+    return df
+
+    # new_df = df.copy()
+    # method = getattr(new_df[cols].rolling(window), func)
+    # new_df[cols] = method()
+    # return new_df
 
 
 def sample(df):
@@ -180,13 +236,21 @@ def drop_cols(df):
 
 def drop_rows(df):
     # Atmost 1/2 rows are dropped
-    if df.index < 3:
+    if len(df.index) <= 3:
         to_drop = 1
     else:
         to_drop = np.random.randint(1, len(df.index)/2)
     rows = select_rand_rows(df, num=to_drop)
     return df.drop(rows)
 
+
+def add_rows(df, rid, to_add, minVal=0, maxVal=100):
+    _, colsize = df.shape
+    rows = np.random.randint(minVal, high=maxVal,
+                                       size=(to_add, colsize))
+    add_df = pd.DataFrame(rows, columns=df.columns,
+                               index=np.arange(rid, rid + to_add))
+    return df.append(add_df)  ###index may not be unique ##, ignore_index=True
 
 def select_rand_rows(df, num=1):
     return np.random.choice(df.index.values, num)
@@ -212,24 +276,30 @@ def get_rand_aggregate():
     return np.random.choice(['min', 'max', 'sum', 'avg'], 1)[0]
 
 
-def generate__dataset(shape, n, scale=10):
+
+def generate__dataset(shape, n, scale=10, snapshot_freq=5):
     operations = [
         #agg,       ### non-preserving
         assign,
-        expanding,
+        #expanding,
         #groupby,   ### non-preserving
         iloc,
         # melt,
         #merge,     ### non-preserving
         nlargest,
         nsmallest,
-        reindex,   ### this may cause a problem??
-        rolling,
+        #reindex,   ### this may cause a problem??
+        #rolling,
         sample,
         sort_index,
         sort_values,
         drop_cols,
         drop_rows,
+        add_rows,
+        add_rows,
+        add_rows,
+        add_rows,
+        add_rows,
     ]
 
     dataset = PandasVersionGenerator(shape, scale=scale)
@@ -239,12 +309,18 @@ def generate__dataset(shape, n, scale=10):
     i = 0
 
     while i != n-1:
-        choice = np.random.choice(operations, 1)[0]
+        ops = []
+        for iter in range(snapshot_freq):
+            ops.append(np.random.choice(operations, 1)[0])
+        #print (ops)
+        #choice = np.random.choice(operations, 1)[0]
         try:
-            dataset.apply_op(choice)
+            dataset.apply_ops(ops)
+            #dataset.apply_op(choice)
             i += 1
         except Exception as e:
             tb = traceback.format_exc()
-            errors.append({str(choice).split()[1]: tb})
-
+            errors.append({str(ops).split()[1]: tb})
+            #print(errors)
+            #sys.exit(1)
     return dataset, errors

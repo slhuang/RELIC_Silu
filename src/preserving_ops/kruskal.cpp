@@ -2,6 +2,10 @@
 
 void kruskal::kruskalMST() {
     auto cmp = [](const edge& e1, const edge&e2) {
+        if (e1.w == e2.w) {
+            if (e1.u == e2.u) return e1.v < e2.v;
+            return e1.u < e2.u;
+        }
         return e1.w < e2.w; // break the tie?
     };
     sort(G.E.begin(), G.E.end(), cmp);
