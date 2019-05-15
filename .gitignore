@@ -1,0 +1,4 @@
+*.csv
+result/*.csv
+test/*.csv
+src/*.csv
