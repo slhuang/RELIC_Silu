@@ -24,10 +24,10 @@ class pre_clustering {
         vector<cluster> clusters; 
     public:
         pre_clustering() {}
-        void load_col_matching_from_file(const string &file = "./src/profiling/schema_matching.csv");
+        void load_col_matching_from_file(const string &file = "./result/schema_matching.csv");
         void cluster_with_exact_schema();
         void cluster_with_partial_schema();
         void cluster_with_pk();
         void all_in_one_cluster();
-        void write_clusters_to_file(const string& file = "./src/pre_clustering/clusters.csv");
+        void write_clusters_to_file(const string& file = "./result/clusters.csv", const string& file_cluster_with_filename = "./result/clusters_with_filename.csv");
 };

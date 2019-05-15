@@ -51,5 +51,5 @@ class kruskal {
         }
         void kruskalMST();
         vector<edge>& get_mst_edges() {return mst.E;}
-        void printMST(const string &file = "./src/preserving_ops/infered_mst.csv");
+        void printMST(const string &file = "./result/infered_mst.csv");
 };

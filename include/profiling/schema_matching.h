@@ -36,7 +36,7 @@ class schema_matching {
     void initialize_synonyms(const string &file, const char &delimiter = ',');
     void load_header_and_sample_value(int sampleCnt);
     void schema_match_by_name_and_type();
-    void write_mapping_to_file(const string& file = "./src/profiling/schema_matching.csv");
+    void write_mapping_to_file(const string& file = "./result/schema_matching.csv", const string& file_cid2name = "./result/global_cid_2_name.csv");
     vector<unordered_map<int, int>> return_col_l2g() {return col_l2g;}
 };
 

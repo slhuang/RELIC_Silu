@@ -77,10 +77,10 @@ void pre_clustering::all_in_one_cluster() {
 input: $clusters
 output: $file
 */
-void pre_clustering::write_clusters_to_file(const string &file)
+void pre_clustering::write_clusters_to_file(const string &file, const string& file_cluster_with_filename)
 {
     ofstream fout(file);
-    ofstream fout2("./src/pre_clustering/clusters_with_filename.csv");
+    ofstream fout2(file_cluster_with_filename); //"./src/pre_clustering/clusters_with_filename.csv");
     for (const auto& cluster: clusters) {
         fout << cluster.id << "," << cluster.file_ids.size();
         fout2 << cluster.id << "," << cluster.file_ids.size();

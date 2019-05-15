@@ -4,15 +4,18 @@
 g++ -o src/pre_clustering/pre_clustering src/pre_clustering/pre_clustering_test.cpp src/pre_clustering/pre_clustering.cpp -std=c++14 -O3
 */
 bool EXACT_SCHEMA, PARTIAL_SCHEMA, PK;
+string result_dir;
 
 void initialize() {
     EXACT_SCHEMA = true;
     PARTIAL_SCHEMA = false;
     PK = false;
+	result_dir = "./result/";
 }
 
 void parser(int argc, char *argv[])
 {
+	initialize();
     for (int ptr = 1; ptr < argc; ++ptr)
     {
         string cur = argv[ptr];
@@ -36,7 +39,11 @@ void parser(int argc, char *argv[])
             EXACT_SCHEMA = false;
             PARTIAL_SCHEMA = false;
             PK = false;
-        }
+        } else 
+			if (cur == "-result") {
+				++ptr;
+				result_dir = argv[ptr];
+			}
     }
 }
 
@@ -53,5 +60,5 @@ int main(int argc, char *argv[])
         pc.cluster_with_pk();
     else
         pc.all_in_one_cluster();
-    pc.write_clusters_to_file();
+    pc.write_clusters_to_file(result_dir + "clusters.csv", result_dir + "clusters_with_filename.csv");
 }

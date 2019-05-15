@@ -44,6 +44,6 @@ class row_matching
     void detect_pk_by_hyperloglog();
     void detect_pk_by_sampling(int sampleCnt = 1000);
     void row_match_by_pk_name_and_value();
-    void write_matching_to_file(const string &file = "./src/profiling/row_matching.csv");
-    void print_pk(const string& file = "./src/profiling/pk.csv");
+    void write_matching_to_file(const string &file = "./result/row_matching.csv");
+    void print_pk(const string& file = "./result/pk.csv");
 };

@@ -461,11 +461,11 @@ void preserving_ops::relational_sim() {
     // }
 }
 
-void preserving_ops::print_sim_scores()
+void preserving_ops::print_sim_scores(const string& output_dir)
 {
-    ofstream fout_cell("./src/preserving_ops/result/cell_sim.csv");
-    ofstream fout_col("./src/preserving_ops/result/col_sim.csv");
-    ofstream fout_relation("./src/preserving_ops/result/relation_sim.csv");
+    ofstream fout_cell(output_dir + "cell_sim.csv");
+    ofstream fout_col(output_dir + "col_sim.csv");
+    ofstream fout_relation(output_dir + "relation_sim.csv");
     fout_cell << "name";
     fout_col << "name";
     fout_relation << "name";
@@ -497,6 +497,7 @@ void preserving_ops::print_sim_scores()
         fout_col << endl;
         fout_relation << endl;
     }
+	cout << "--------finish printing similarity scores----------\n";
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -533,9 +534,10 @@ void preserving_ops::convert_adj_matrix_2_edge_list(vector<edge> &cross_edges, v
             else cross_edges.push_back(e);
         }
     }
+	cout << "--------finish constructing inter and intra-cluster edges--------\n";
 }
 
-void preserving_ops::lineage_construction_mst(const string& metric) {
+void preserving_ops::lineage_construction_mst(const string& metric, const string& output_dir) {
     vector<edge> cross_edges;           // edges that with nodes from different clusters
     vector<vector<edge>> within_edges; // each cluster consist of a sub-graph with edges
     convert_adj_matrix_2_edge_list(cross_edges, within_edges, metric); //metric
@@ -551,5 +553,5 @@ void preserving_ops::lineage_construction_mst(const string& metric) {
         inferred_G.insert_mst_edges(sub_mst.get_mst_edges());
     }
     inferred_G.kruskalMST();
-    inferred_G.printMST("./src/preserving_ops/infered_mst_" + metric + ".csv");
+    inferred_G.printMST(output_dir + "infered_mst_" + metric + ".csv");
 }

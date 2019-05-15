@@ -127,7 +127,7 @@ void schema_matching::schema_match_by_name_and_type(){
 /*
 
 */
-void schema_matching::write_mapping_to_file(const string &file)
+void schema_matching::write_mapping_to_file(const string &file, const string& file_cid2name)
 {
     ofstream fout(file);
     for (int fid = 0; fid < col_g2l.size(); ++fid)
@@ -138,7 +138,7 @@ void schema_matching::write_mapping_to_file(const string &file)
             fout << global2local.first << "," << global2local.second << endl; // global,local
         }
     }
-    ofstream fout2("./src/profiling/global_cid_2_name.csv");
+    ofstream fout2(file_cid2name);
     for (const auto ele : globalId2Name) {
         fout2 << ele.first << "," << ele.second << endl; // cid, name
     }

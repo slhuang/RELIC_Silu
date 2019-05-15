@@ -7,9 +7,11 @@ src/profiling/schema_matching.cpp src/preserving_ops/preserving_ops.cpp -std=c++
 */
 
 vector<string> file_paths;
+string result_dir;
 
 void parser(int argc, char *argv[])
 {
+	result_dir = "./result/"; //initialize
     for (int ptr = 1; ptr < argc; ++ptr)
     {
         string cur = argv[ptr];
@@ -26,7 +28,11 @@ void parser(int argc, char *argv[])
                     file_paths.push_back(path);
             }
             cout << "--------- total number of files: " << file_paths.size() << " ---------" << endl;
-        }
+        } else 
+		if (cur == "-result") {
+			++ptr;
+			result_dir = argv[ptr];
+		} 
     }
 }
 
@@ -37,8 +43,8 @@ int main(int argc, char *argv[])
     ops.cell_level_jaccard();
     ops.column_level_jaccard();
     //ops.relational_sim();
-    ops.print_sim_scores();
-    ops.lineage_construction_mst("cell");
-    ops.lineage_construction_mst("col");
+    ops.print_sim_scores(result_dir);
+    ops.lineage_construction_mst("cell", result_dir);
+    ops.lineage_construction_mst("col", result_dir);
     //ops.lineage_construction_mst("rel");
 }

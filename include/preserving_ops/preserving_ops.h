@@ -72,19 +72,19 @@ class preserving_ops {
         for (auto &ele : exact_scores)
             ele.resize(filePaths.size());
     }
-    void load_row_l2g_correspondence(const string& file = "./src/profiling/row_matching.csv");//
-    void load_col_g2l_correspondence(const string &file = "./src/profiling/schema_matching.csv");
+    void load_row_l2g_correspondence(const string& file = "./result/row_matching.csv");//
+    void load_col_g2l_correspondence(const string &file = "./result/schema_matching.csv");
     void load_matrixes();
-    void load_cluster(const string& file = "./src/pre_clustering/clusters.csv");
+    void load_cluster(const string& file = "./result/clusters.csv");
     void cell_level_jaccard();
     void aggregate_each_column_set();
     void column_level_jaccard();
     void relational_sim();
-    void print_sim_scores();
+    void print_sim_scores(const string& output_dir = "./result/");
     // helper
     void convert_adj_matrix_2_edge_list(vector<edge> &all_edges, vector<vector<edge>> &cluster_edges, const string &metric = "cell");
     // construct lineage graph based on MDL principle
-    void lineage_construction_mst(const string &metric = "cell"); // intra-cluster & inter-cluster
+    void lineage_construction_mst(const string &metric = "cell", const string& output_dir = "./result/"); // intra-cluster & inter-cluster
     // some other approaches e.g., threshold-based
     void lineage_construction_threshold();
 };
