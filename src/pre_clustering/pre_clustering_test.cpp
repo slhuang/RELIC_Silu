@@ -60,5 +60,5 @@ int main(int argc, char *argv[])
         pc.cluster_with_pk();
     else
         pc.all_in_one_cluster();
-    pc.write_clusters_to_file(result_dir + "clusters.csv", result_dir + "clusters_with_filename.csv");
+    pc.write_clusters_to_file(result_dir + "/clusters.csv", result_dir + "/clusters_with_filename.csv");
 }

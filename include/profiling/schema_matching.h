@@ -22,10 +22,10 @@ struct col {
 class schema_matching {
     unionfind synonyms;
     vector<string> filePaths;
-    vector<vector<col>> fileCols; // a set of files, and a set of columns in each file
+    vector<vector<col> > fileCols; // a set of files, and a set of columns in each file
     unordered_map<string, int> globalName2Id; // global_name -> global_cid
     unordered_map<int, string> globalId2Name; // correspond to globalName2Id
-    vector<unordered_map<int, int>> col_g2l, col_l2g;
+    vector<unordered_map<int, int> > col_g2l, col_l2g;
   public:
     schema_matching(vector<string> _filePaths) : filePaths(_filePaths)
     {

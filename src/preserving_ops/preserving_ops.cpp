@@ -1,5 +1,6 @@
 #include "../../include/preserving_ops/preserving_ops.h"
 
+
 void preserving_ops::load_row_l2g_correspondence(const string &file) {
     ifstream fin(file);
     string line;
@@ -103,7 +104,7 @@ void preserving_ops::load_matrixes()
                 }
                 ++cid;
             }
-            if (!header) {
+            if (!header && with_pk) {
                 int rid = matrixes[fid].size() - 1; 
                 record[0] = to_string(row_l2g[fid][rid]); //populate the placeholder -- global_rid
             }
@@ -330,6 +331,93 @@ double relational_sim_for_version_pair(const vector<vector<string>> &A, const ve
     int total_cell_A = (A.size() - 1) * (A[0].size() - 1), total_cell_B = (B.size() - 1) * (B[0].size() - 1);
     return total_area / (total_cell_A + total_cell_B - total_area);
 }
+
+/*
+Estimate similarity using kmins
+input: $sigA and $sigB of the same size
+output: similarity metric
+*/
+double estimatorKmins(const vector<int> &sigA, const vector<int> &sigB)
+{
+    if (sigA.size() != sigB.size())
+    {
+        fprintf(stderr, "=========sigA (%ld) != sigB (%ld)", sigA.size(), sigB.size());
+    }
+    //clock_t t = clock();
+    int common_sig = 0;
+    for (int k = 0; k < sigA.size(); ++k)
+    {
+        if (sigA[k] == sigB[k])
+            ++common_sig;
+    }
+    // t = clock() - t;
+    // fprintf(stderr, "===========pairwiseJaccard %f, using %f ms=========\n", double(common_sig) / sigA.size(), (double)(t * 1000) / CLOCKS_PER_SEC);
+    return double(common_sig) / sigA.size();
+}
+
+/*
+one estimator using bottomK -- first estimate "intersection" & "union"
+then calculate jaccard based on set estimator
+*/
+double unionEstimatorBottomK(const vector<int> &sigA, const vector<int>& sigB, int K) {
+    vector<int> AandB, AorB; // AorB is of size K, HashCnt
+    int ptr1 = 0, ptr2 = 0;
+    while (ptr1 < sigA.size() && ptr2 < sigB.size())
+    {
+        if (sigA[ptr1] == sigB[ptr2])
+        {
+            AandB.push_back(sigA[ptr1]);
+            AorB.push_back(sigA[ptr1]);
+            ++ptr1;
+            ++ptr2;
+        } else {
+            if (sigA[ptr1] < sigB[ptr2])
+            {
+                AorB.push_back(sigA[ptr1++]);
+            } else {
+                AorB.push_back(sigB[ptr2++]);
+            }
+        }
+    }
+    if (AorB.size() > K) AorB.resize(K);
+    int common = 0;
+    ptr1 = 0; ptr2 = 0;
+    while (ptr1 < AandB.size() && ptr2 < AorB.size()) {
+        if (AandB[ptr1] == AorB[ptr2]) {
+            ++common; ++ptr1; ++ptr2;
+        } else {
+            if (AandB[ptr1] < AorB[ptr2]) {
+                ++ptr1;
+            } else {
+                ++ptr2;
+            }
+        }
+    }
+    return double(common) / AorB.size();
+}
+
+/*
+the other estimator via bottomK sketch;
+simply treat sigA and sigB as two sets, and calculate jaccard
+*/
+double estimatorBottomK(const vector<int> &sigA, const vector<int> &sigB)
+{
+    //clock_t t = clock();
+    int common_sig = 0;
+    unordered_set<int> exist(sigB.begin(), sigB.end());
+    if (sigB.size() != exist.size()) // exist duplicates in sigB -- different values are hashed to the same sig
+        cout << "--------bottom-k sketch:" << sigB.size() << " != " << exist.size() << endl;
+    for (const int& ele : sigA)
+    {
+        if (exist.count(ele))
+            ++common_sig;
+    }
+    // t = clock() - t;
+    // fprintf(stderr, "===========pairwiseJaccard %f, using %f ms=========\n", double(common_sig) / sigA.size(), (double)(t * 1000) / CLOCKS_PER_SEC);
+    return double(common_sig) / (sigA.size() + sigB.size() - common_sig);
+}
+
+
 ///////////////////////////////////////////////////////////////////////
 /*
 Aggregate each column set per file
@@ -342,6 +430,7 @@ void preserving_ops::aggregate_each_column_set()
     file_columns.resize(file_cnt);
     for (int fid = 0; fid < file_cnt; ++fid) {
         vector<vector<string>>& mat = matrixes[fid];
+        file_columns[fid].clear();
         for (int cid = 1; cid < mat[0].size(); ++cid) {
             colStats cur_col;
             cur_col.global_cid = stoi(mat[0][cid]);
@@ -390,6 +479,52 @@ void preserving_ops::cell_level_jaccard()
     cout << "------------finish calculating cell level jaccard similarity-----------\n";
 }
 
+void print_sig(const vector<int>& sig) {
+    for (const auto& ele : sig) {
+        cout << ele << ",";
+    }
+    cout << endl;
+}
+
+void preserving_ops::cell_level_jaccard_approx(int K) {
+    construct_sketches_cell_level(K);
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i) {
+        exact_scores[i][i].cell_jaccard = 1;
+        //cout << i << ":";
+        //print_sig(sigs_cell[i]);
+        for (int j = 0; j < i; ++j) {
+            string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            cout << "=======" << file_i << " vs.(cell-jaccard) " << file_j << "=======" << endl;
+            double sim = (k_mins?estimatorKmins(sigs_cell[i], sigs_cell[j]):estimatorBottomK(sigs_cell[i], sigs_cell[j]));
+            exact_scores[i][j].cell_jaccard = sim;
+            exact_scores[j][i].cell_jaccard = sim;
+        }
+    }
+    cout << "------------finish calculating cell level jaccard similarity approximately-----------\n";
+}
+
+void preserving_ops::cell_level_jaccard_no_pk() {
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i) {
+        exact_scores[i][i].cell_jaccard = 1;
+        for (int j = 0; j < i; ++j) {
+            string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            cout << "=======" << file_i << " vs.(cell-jaccard) " << file_j << "=======" << endl;
+            vp_row_matching vp(matrixes[i], matrixes[j], col_g2l[j]);
+            vp.construct_r2r_similarity();
+            vp.r2r_correspondence_greedy();
+            int common_cnt = vp.return_largest_common_cells();
+            int total_cell_A = (matrixes[i].size() - 1) * (matrixes[i][0].size() - 1), total_cell_B = (matrixes[j].size() - 1) * (matrixes[j][0].size() - 1);
+            double sim = (double)(common_cnt) / (total_cell_A + total_cell_B - common_cnt);
+            exact_scores[i][j].cell_jaccard = sim;
+            exact_scores[j][i].cell_jaccard = sim;
+        }
+    }
+    cout << "------------finish calculating cell level jaccard similarity with no pk-----------\n";
+}
 void preserving_ops::column_level_jaccard() {
     aggregate_each_column_set();
     int artifact_cnt = filePaths.size();
@@ -406,27 +541,42 @@ void preserving_ops::column_level_jaccard() {
             exact_scores[j][i].col_jaccard = sim;
         }
     }
-/*     for (const auto &each_cluster : clusters)
-    {
-        const vector<int> &file_ids = each_cluster.file_ids;
-        for (int i = 0; i < file_ids.size(); ++i)
-        {
-            int u = file_ids[i];
-            exact_scores[u][u].col_jaccard = 1;
-            for (int j = 0; j < i; ++j)
-            {
-                int v = file_ids[j];
-                string file_u = filePaths[u].substr(filePaths[u].find_last_of("/\\") + 1);
-                string file_v = filePaths[v].substr(filePaths[v].find_last_of("/\\") + 1);
-                cout << "=======" << file_u << " vs.(col-jaccard) " << file_v << "=======" << endl;
-                double sim = column_level_jaccard_for_version_pair(file_columns[u], file_columns[v], col_g2l[v]);
-                exact_scores[u][v].col_jaccard = sim;
-                exact_scores[v][u].col_jaccard = sim;
-            }
-        }
-    } */
     cout << "------------finish calculating column level jaccard similarity------------\n";
 }
+
+
+void preserving_ops::column_level_jaccard_approx(int K) {
+    aggregate_each_column_set();
+    construct_sketches_col_level(K);
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i)
+    {
+        exact_scores[i][i].col_jaccard = 1;
+        for (int j = 0; j < i; ++j)
+        {
+            string file_i = filePaths[i].substr(filePaths[i].find_last_of("/\\") + 1);
+            string file_j = filePaths[j].substr(filePaths[j].find_last_of("/\\") + 1);
+            //cout << "=======" << file_i << " vs.(col-jaccard) " << file_j << "=======" << endl;
+            // iterate through the columns 
+            double total_sim = 0;
+            vector<double> sim_cols;
+            for (int c = 0; c < file_columns[i].size(); ++c) {
+                int global_cid = file_columns[i][c].global_cid;
+                if (col_g2l[j].count(global_cid) == 0) continue; // no matched column
+                int cid_B = col_g2l[j].at(global_cid);
+                // can change to another estimator estimatorBottomK
+                double sim = (k_mins?estimatorKmins(sigs_col[i][c], sigs_col[j][cid_B]):estimatorBottomK(sigs_col[i][c], sigs_col[j][cid_B])); 
+                total_sim += sim;
+                sim_cols.push_back(sim);
+            }
+            double sim = total_sim / (sigs_col[i].size() + sigs_col[j].size() - sim_cols.size());
+            exact_scores[i][j].col_jaccard = sim;
+            exact_scores[j][i].col_jaccard = sim;
+        }
+    }
+    cout << "------------finish calculating column level jaccard similarity using sketch------------\n";
+}
+
 
 void preserving_ops::relational_sim() {
     int artifact_cnt = filePaths.size();
@@ -463,9 +613,9 @@ void preserving_ops::relational_sim() {
 
 void preserving_ops::print_sim_scores(const string& output_dir)
 {
-    ofstream fout_cell(output_dir + "cell_sim.csv");
-    ofstream fout_col(output_dir + "col_sim.csv");
-    ofstream fout_relation(output_dir + "relation_sim.csv");
+    ofstream fout_cell(output_dir + "/cell_sim_" + (with_pk?"PK":"noPK") + ".csv");
+    ofstream fout_col(output_dir + "/col_sim.csv");
+    ofstream fout_relation(output_dir + "/relation_sim.csv");
     fout_cell << "name";
     fout_col << "name";
     fout_relation << "name";
@@ -553,5 +703,68 @@ void preserving_ops::lineage_construction_mst(const string& metric, const string
         inferred_G.insert_mst_edges(sub_mst.get_mst_edges());
     }
     inferred_G.kruskalMST();
-    inferred_G.printMST(output_dir + "infered_mst_" + metric + ".csv");
+    if (metric == "cell")
+        inferred_G.printMST(output_dir + "/infered_mst_" + metric + "_" + (with_pk?"PK":"noPK") + ".csv");
+    else
+        inferred_G.printMST(output_dir + "/infered_mst_" + metric + ".csv");
 }
+
+
+/*use sketches*/
+void preserving_ops::set_sketch_type(const string& sketch_type) {
+    if (sketch_type == "kMins") {
+        k_mins = true;
+    } else {
+        k_mins = false;
+    }
+}
+
+void preserving_ops::construct_sketches_cell_level(int K) {
+    sigs_cell.clear();
+    minHash *sketch;
+    if (k_mins) {
+        kmins *kmins_sketch = new kmins();
+        sketch = kmins_sketch;
+    } else {
+        bottomK *bottomK_sketch = new bottomK();
+        sketch = bottomK_sketch;
+    }
+    // calculate version-wise sig
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i) {
+        sketch->computeSig(matrixes[i]);
+        sigs_cell.push_back(sketch->return_sig());
+    }
+    delete sketch;
+}
+
+void preserving_ops::initialize_sketch(int K) {
+    if (k_mins) {
+        kmins::initialize(K);
+    } else {
+        bottomK::initialize(K);
+    }
+}
+
+void preserving_ops::construct_sketches_col_level(int K) {
+    minHash *sketch;
+    if (k_mins) {
+        kmins *kmins_sketch = new kmins();
+        sketch = kmins_sketch;
+    } else {
+        bottomK *bottomK_sketch = new bottomK();
+        sketch = bottomK_sketch;
+    }
+    // calculate version-wise sig
+    int artifact_cnt = filePaths.size();
+    for (int i = 0; i < artifact_cnt; ++i) {
+        vector<vector<int>> per_version;
+        for (int cid = 0; cid < file_columns[i].size(); ++cid) {
+            sketch->computeSig(file_columns[i][cid].domain);
+            per_version.push_back(sketch->return_sig());
+        }
+        sigs_col.push_back(per_version);
+    }
+    delete sketch;
+}
+
