@@ -29,6 +29,7 @@ class row_matching
     unordered_map<string, int> globalName2Id;
     vector<unordered_map<int,int>> row_l2g, col_l2g; 
     vector<unordered_map<int, vector<int>>> row_g2l; // global_rid can be mapped to multiple local_rid 
+    unordered_map<int, int> global_cid2cnt; // the number of occurrene of a global cid
   public:
     row_matching(vector<string>& _filePaths, vector<unordered_map<int,int>> _col_l2g, bool _useHLL = false){
         filePaths = _filePaths;

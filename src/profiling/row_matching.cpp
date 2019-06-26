@@ -1,5 +1,6 @@
 #include "../../include/profiling/row_matching.h"
 
+
 /*
 if $useHLL=true, then calculate hyperloglog
 output: $matrixes -- the first row maintains the global_cid; 
@@ -32,6 +33,8 @@ void row_matching::load_files_and_calculate_stats() {
                         cell = "null_" + to_string(null_id++);
                     col_names[fid].push_back(cell);
                     int global_cid = col_l2g[fid][cid];
+                    // calculate the occurrence of a particular column $global_cid
+                    ++global_cid2cnt[global_cid]; 
                     record.push_back(to_string(global_cid));
                     //cout << to_string(cid) << " " << to_string(global_cid) << endl;
                     // the first row maintains the global_cid for each column
@@ -57,10 +60,13 @@ void row_matching::load_files_and_calculate_stats() {
 
 /*
 randomly examine $sampleCnt samples 
+First identify pk based on cardinality of each column, i.e., $pk_cid_by_distict
+Next, identify the pk based on both cardinality & the occurrence across datasets
 */
 void row_matching::detect_pk_by_sampling(int sampleCnt) {
     for (int fid = 0; fid < matrixes.size(); ++fid) {
         // distinct values in each column
+        //cout << "-----------" << fid << "," << filePaths[fid] << "-----------" << endl;
         int col_cnt = matrixes[fid][0].size() - 1; // excluding the first column: global_rid
         vector<unordered_set<string>> col_distincts(col_cnt);
         for (int i = 0; i < sampleCnt; ++i) {
@@ -71,12 +77,12 @@ void row_matching::detect_pk_by_sampling(int sampleCnt) {
                 col_distincts[cid - 1].insert(matrixes[fid][rid][cid]);
             }
         }
-        int pk_cid  = 0;
+        int pk_cid  = 0, pk_cid_by_distict = 0;
         // the column with largest number of distinct value is selected as the pk
         for (int cid = 0; cid < col_cnt; ++cid) {
             //cout << filePaths[fid] << "," <<  col_names[fid][cid] << " " << col_distincts[cid].size() << endl;
-            if (col_distincts[cid].size() > col_distincts[pk_cid].size()) {
-                pk_cid = cid;
+            if (col_distincts[cid].size() > col_distincts[pk_cid_by_distict].size()) {
+                pk_cid_by_distict = cid;
             }
             /*TODO: take other files' pk into account*/
             // else if (col_distincts[cid].size() == col_distincts[pk_cid].size()) {
@@ -85,6 +91,13 @@ void row_matching::detect_pk_by_sampling(int sampleCnt) {
             //         pk_cid = cid;
             //     }
             // }
+        }
+        pk_cid = pk_cid_by_distict; 
+        for (int cid = 0; cid < col_cnt; ++cid) {
+            //cout << cid << " " << col_distincts[cid].size() << "," << global_cid2cnt[col_l2g[fid][cid]] << endl;
+            if (col_distincts[cid].size() > 0.9 * col_distincts[pk_cid_by_distict].size() && global_cid2cnt[col_l2g[fid][cid]] >= global_cid2cnt[col_l2g[fid][pk_cid]]) {
+                pk_cid = cid;
+            }
         }
         // pks: the global column id
         pks.push_back({pk_cid, col_l2g[fid][pk_cid]});

@@ -46,6 +46,7 @@ def preserving_ops(dir_path, endwith, result_dir, with_pk, approx=0):
 def run():
     #convert_windows_to_linux('/home/slhuang/Public/2018-fall/lineage_inference/case_study/retail/')
     ### retail
+    #profiling('nb_123977/artifacts/', '.csv') #nb_123977/artifacts/')
     #profiling('/home/slhuang/Public/2018-fall/lineage_inference/case_study/retail/', '_linux.csv') #nb_123977/artifacts/')
     #pre_clustering('-exact_schema')
     #preserving_ops('/home/slhuang/Public/2018-fall/lineage_inference/case_study/retail/') #nb_123977/artifacts/') # /repo_user/')
@@ -54,13 +55,15 @@ def run():
     #profiling('/home/slhuang/Public/2018-fall/lineage_inference/case_study/nb_123977/artifacts/', '.csv') #retail/') #nb_123977/artifacts/')
     #pre_clustering('-exact_schema')
     #preserving_ops('/home/slhuang/Public/2018-fall/lineage_inference/case_study/nb_123977/artifacts/', '.csv') #nb_123977/artifacts/') # /repo_user/')
+    data_dir = '/Users/silu/Documents/2019-spring/lineage-inference/EXP/Real_Workflow/nb_924102.ipynb/artifacts_1/' # 924102 './dataset/'
     result_dir = "./result"
     with_pk = False
     clear_files(result_dir)
-    profiling('./dataset/', '.csv', result_dir) #retail/') #nb_123977/artifacts/')
+    profiling(data_dir, '.csv', result_dir) #retail/') #nb_123977/artifacts/')
     pre_clustering('-no_pre_cluster', result_dir)  #('-no_pre_cluster')# '-exact_schema'
+    preserving_ops(data_dir, '.csv', result_dir, True)
     #preserving_ops('./dataset/', '.csv', result_dir, with_pk) #nb_123977/artifacts/') # /repo_user/')
-    preserving_ops('./dataset/', '.csv', result_dir, True)
-    preserving_ops('./dataset/', '.csv', result_dir, True, 100)
+    #preserving_ops('./dataset/', '.csv', result_dir, True)
+    #preserving_ops('./dataset/', '.csv', result_dir, True, 100)
 if __name__ == '__main__':
     run()
